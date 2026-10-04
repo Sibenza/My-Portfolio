@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { projects } from '../data/portfolioData';
 import Reveal from './Reveal';
 import SectionHeading from './SectionHeading';
@@ -14,32 +15,29 @@ export default function Projects() {
       <div className="projects">
         {projects.map((p, i) => (
           <Reveal key={p.id} delay={i * 80}>
-            <article
-              className="project"
-              style={{ '--p-accent': p.accent }}
-            >
-              <div className="project__bar" />
-
-              <div className="project__body">
-                <div className="project__top">
-                  <span className="project__id">{p.id}</span>
-                  <div className="project__tags">
-                    {p.tags.map((t) => (
-                      <span key={t} className="tag">
-                        {t}
-                      </span>
-                    ))}
+            <Link to={`/projects/${p.slug}`} className="project-link">
+              <article className="project" style={{ '--p-accent': p.accent }}>
+                <div className="project__bar" />
+                <div className="project__body">
+                  <div className="project__top">
+                    <span className="project__id">{p.id}</span>
+                    <div className="project__tags">
+                      {p.tags.map((t) => (
+                        <span key={t} className="tag">{t}</span>
+                      ))}
+                    </div>
                   </div>
+
+                  <h3 className="project__title">{p.title}</h3>
+                  <p className="project__summary">{p.summary}</p>
+                  <p className="project__impact">
+                    <span>↳</span> {p.impact}
+                  </p>
+
+                  <span className="project__cta">Read case study →</span>
                 </div>
-
-                <h3 className="project__title">{p.title}</h3>
-                <p className="project__summary">{p.summary}</p>
-
-                <p className="project__impact">
-                  <span>↳</span> {p.impact}
-                </p>
-              </div>
-            </article>
+              </article>
+            </Link>
           </Reveal>
         ))}
       </div>

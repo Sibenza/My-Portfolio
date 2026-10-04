@@ -1,24 +1,21 @@
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Education from './components/Education';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
+import Home from './pages/Home';
+import ProjectDetail from './pages/ProjectDetail';
 
 export default function App() {
   return (
     <div className="app">
+      <ScrollToTop />
       <Navbar />
       <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Education />
-        <Contact />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects/:slug" element={<ProjectDetail />} />
+        </Routes>
       </main>
       <Footer />
     </div>
